@@ -1,0 +1,102 @@
+CREATE DATABASE assingment2;
+USE assingment2;
+
+CREATE TABLE dept(
+dept_no INT NOT NULL PRIMARY KEY,
+dept_name VARCHAR(100) NOT NULL);
+
+DESC dept;
+
+INSERT INTO dept
+(dept_no,dept_name)
+VALUES
+(1,"Sales"),
+(2,"Engineering"),
+(3,"HR"),
+(4,"Finance");
+
+SELECT * FROM dept;
+
+
+-- Q1.SELECT ALL DEPARTMENT WHERE THE DEPARTMENT NUMBER IS GRATER 2
+
+SELECT  dept_name FROM dept  WHERE dept_no > 2;
+
+-- Q6.INSERT A NEW DEPARTMENT INTO DEPT TABLE WITH 5,"MARKETING"
+
+INSERT INTO dept 
+(dept_no,dept_name)
+VALUES(5,"MARKETING");
+
+-- Q8.DELETE ALL EMPLOYEE FROM HR DEPARTMENT
+
+DELETE FROM dept WHERE dept_name="HR";
+
+
+
+CREATE TABLE emp
+(emp_id INT NOT NULL PRIMARY KEY,
+emp_name VARCHAR(50) NOT NULL,
+sal DECIMAL(8,2) NOT NULL,
+dept_no INT NOT NULL,
+FOREIGN KEY(dept_no) REFERENCES dept(dept_no));
+
+DESC emp;
+
+INSERT INTO emp
+(emp_id,emp_name,sal,dept_no)
+VALUES
+(101,"John Doe",4500.00,1),
+(102,"Jane Smith",6500.00,2),
+(103,"Robert Johnson",8500.00,3),
+(104,"Emily Davis",5000.00,4);
+
+
+SELECT * FROM emp;
+
+-- Q2.SELECT TOTAL NUMBER OF EMPLOYEE
+
+SELECT COUNT(*) FROM emp;
+
+-- Q3.SELECT ALL THE EMPLOYEE WHOSE DEPT NUMBER IS 1
+
+SELECT emp_name FROM emp WHERE dept_no = 1;
+
+-- Q4.INCRESE THE SALARY OF ALL EMPLOYEE 15%
+
+UPDATE emp SET sal=sal+(sal*15/100);
+
+-- Q5.UPDATE THE SALARY OF EMPLOYEE WITH EMP_ID=1 WITH 5500
+
+UPDATE emp SET sal=5500 WHERE emp_id=101;
+
+-- Q7.INSERT A NEW EMPLOYEE WITH EMP_ID 105,"ALICE GREEN", 4200.00,5
+
+INSERT INTO emp VALUES(105,"Alice Green",4200.00,5);
+
+
+CREATE TABLE salary(
+grade INT NOT NULL PRIMARY KEY,
+low_salary DECIMAL(8,2) NOT NULL,
+high_salary DECIMAL(8,2) NOT NULL);
+
+DESC salary;
+
+INSERT INTO salary
+(grade,low_salary,high_salary)
+VALUES
+(1,2000.00,4000.00),
+(2,4000.01,6000.00),
+(3,6000.01,8000.00),
+(4,8000.01,10000.000);
+
+SELECT * FROM salary;
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,51 @@
+-- Create DEPT table
+CREATE TABLE DEPT (
+    DEPT_ID INT PRIMARY KEY AUTO_INCREMENT,
+    DEPT_NAME VARCHAR(50),
+    LOCATION VARCHAR(100)
+);
+
+-- Create EMP table
+CREATE TABLE EMP (
+    EMPLOYEE_ID INT PRIMARY KEY AUTO_INCREMENT,
+    EMP_NAME VARCHAR(100),
+    JOB VARCHAR(50),
+    MGR_ID INT,
+    HIREDATE DATE,
+    SALARY DECIMAL(8, 2),
+    COMMISSION_PCT DECIMAL(3, 2),
+    DEPT_ID INT,
+    FOREIGN KEY (MGR_ID) REFERENCES EMP(EMPLOYEE_ID),
+    FOREIGN KEY (DEPT_ID) REFERENCES DEPT(DEPT_ID)
+);
+
+-- Create SALGRADE table
+CREATE TABLE SALGRADE (
+    GRADE INT PRIMARY KEY AUTO_INCREMENT,
+    LOSAL DECIMAL(8, 2),
+    HISAL DECIMAL(8, 2)
+);
+
+-- Insert records into DEPT table
+INSERT INTO DEPT (DEPT_NAME, LOCATION) VALUES 
+('Accounting', 'New York'),
+('Research', 'San Francisco'),
+('Sales', 'Los Angeles'),
+('IT', 'Chicago'),
+('HR', 'Boston');
+
+-- Insert records into SALGRADE table
+INSERT INTO SALGRADE (LOSAL, HISAL) VALUES 
+(1000, 2000),
+(2001, 3000),
+(3001, 4000),
+(4001, 5000),
+(5001, 6000);
+
+-- Insert records into EMP table
+INSERT INTO EMP (EMP_NAME, JOB, MGR_ID, HIREDATE, SALARY, COMMISSION_PCT, DEPT_ID) VALUES
+('John Smith', 'Clerk', NULL, '2020-01-15', 1500, NULL, 1),
+('Alice Brown', 'Manager', 1, '2015-06-23', 5000, 0.05, 1),
+('Bob Green', 'Developer', 2, '2018-11-01', 4500, NULL, 4),
+('Charlie White', 'Analyst', 3, '2019-03-10', 4000, NULL, 2),
+('Daisy Black', 'HR Specialist', 2, '2021-04-10', 3000, NULL, 5);
